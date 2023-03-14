@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PyPapers</title>
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <py-config>
+      [[fetch]]
+      files = ["/request.py"]
+    </py-config>
+    <py-script src="./pypapers.py"></py-script>
+    <main class="max-w-screen-lg bg-slate-50 mx-auto p-4">
+        <h1 class="my-4 font-bold text-xl">PyPapers</h1>
+        <p>PyPapers is a Python library for searching and managing scientific papers.
+           It is built on top of the <a class="text-fuchsia-600 font-semibold" href="https://pyscript.net">PyScript</a> Python library for building web applications.</p>
+        <p>Enter the paper's DOI. Example: 10.2196/10129</p>
+        <div class="my-5">
+            <input type="text" name="search" value="10.2196/10129" class="p-3 border-slate-900 rounded-md w-10/12" id="doi" placeholder="DOI">
+            <button id="search-btn" class="p-3 bg-slate-700 border-slate-900 text-slate-100 rounded-md hover:bg-slate-100 hover:text-slate-900 border-2 active:bg-slate-200 " py-click="search_doi_event()">Search</button>
+        </div>
+        <div id="loading" class="p-4 justify-center items-center hidden">
+            <div class="relative w-12 h-12 animate-spin rounded-full bg-gradient-to-r from-purple-400 via-blue-500 to-red-400 ">
+                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-gray-200 rounded-full border-2 border-white"></div>
+            </div>
+        </div>
+        <section class="border-slate-900 border-2 p-4 rounded-md hidden" id="results">
+            <h2 class="text-2xl mb-2">Results</h2>
+            <div id="title" class="text-lg mb-1"></div>
+            <div id="authors"></div>
+            <div id="reference-count"></div>
+            <div id="references"></div>
+        </section>
+    </main>
+</body>
+</html>
